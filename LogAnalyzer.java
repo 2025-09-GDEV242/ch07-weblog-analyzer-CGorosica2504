@@ -1,6 +1,11 @@
 /**
  * Read web server data and analyse hourly access patterns.
  * 
+ * This class can count the accesses per hour, determine the busiest or quietest hour, and determine the busiest
+ * two-hour periods. It can also print access counts and log data.
+ * 
+ * This class uses the LogfileReader class to access the underlying log data.
+ * 
  * @author David J. Barnes and Michael Kölling.
  * @author Christian Gorosica
  * @version    2025.11.03
@@ -131,6 +136,28 @@ public class LogAnalyzer
         return quietest;
     }
     
-    
+    /**
+     * Determine the two-hour period with the highest number of accesses in the log file.
+     * 
+     * This method examines the sum of the counts of every two hours in the hourCounts array and returns the index of the first hour
+     * of the pair with the highest sum.
+     * 
+     * @return the first hour (0-22) of a consecutive pair whose sum has the most accesses
+     */
+    public int busiestTwoHour() {
+        int busiestStartHour = 0;
+        int maxSum = 0;
+        
+        for (int i = 0; i < 23; i++) {
+            int sum = hourCounts[i] + hourCounts[i + 1];
+            
+            if (sum > maxSum) {
+                maxSum = sum;
+                busiestStartHour = i;
+            }
+        }
+        
+        return busiestStartHour;
+    }
     
 }

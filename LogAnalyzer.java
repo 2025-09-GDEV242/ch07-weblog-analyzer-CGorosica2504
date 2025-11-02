@@ -107,4 +107,30 @@ public class LogAnalyzer
         
         return busiest;
     }
+    
+    /**
+     * Determine the hour with the lowest number of accesses in the log file.
+     * 
+     * This method examines the hourly counts stored in the hourCounts array and returns the index of the hour with
+     * the lowest count.
+     * 
+     * @return the hour (0-23) with the most accesses
+     */
+    public int quietestHour() {
+        int quietest = 0;
+        int minCount = hourCounts[0];
+        
+        for (int i = 1; i < hourCounts.length; i++) {
+            
+            if (hourCounts[i] < minCount) {
+                minCount = hourCounts[i];
+                quietest = i;
+            }
+        }
+        
+        return quietest;
+    }
+    
+    
+    
 }

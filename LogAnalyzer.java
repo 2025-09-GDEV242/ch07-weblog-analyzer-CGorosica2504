@@ -67,4 +67,21 @@ public class LogAnalyzer
     {
         reader.printData();
     }
+    
+    /**
+     * Count the total number of accesses recorded in the log file.
+     * 
+     * This method sums all of the hourly access counts stored in the hourCounts array.
+     * 
+     * @return the total number of access across all hours
+     */
+    public int numberOfAccesses() {
+        int total = 0;
+        
+        for (int i = 0; i < hourCounts.length; i++) {
+            total += hourCounts[i];
+        }
+        
+        return total;
+    }
 }

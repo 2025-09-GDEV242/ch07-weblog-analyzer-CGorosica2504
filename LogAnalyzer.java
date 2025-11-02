@@ -142,14 +142,15 @@ public class LogAnalyzer
      * This method examines the sum of the counts of every two hours in the hourCounts array and returns the index of the first hour
      * of the pair with the highest sum.
      * 
-     * @return the first hour (0-22) of a consecutive pair whose sum has the most accesses
+     * @return the first hour (0-23) of a consecutive pair whose sum has the most accesses
      */
     public int busiestTwoHour() {
         int busiestStartHour = 0;
         int maxSum = 0;
         
-        for (int i = 0; i < 23; i++) {
-            int sum = hourCounts[i] + hourCounts[i + 1];
+        for (int i = 0; i < 24; i++) {
+            int nextHour = (i + 1) % 24;
+            int sum = hourCounts[i] + hourCounts[nextHour];
             
             if (sum > maxSum) {
                 maxSum = sum;
@@ -158,6 +159,5 @@ public class LogAnalyzer
         }
         
         return busiestStartHour;
-    }
-    
+    }    
 }

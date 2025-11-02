@@ -84,4 +84,27 @@ public class LogAnalyzer
         
         return total;
     }
+    
+    /**
+     * Determine the hour with the highest number of accesses in the log file.
+     * 
+     * This method examines the hourly access counts stored in the hourCounts array and returns the index of the hour with
+     * the largest count.
+     * 
+     * @return the hour (0-23) with the most accesses
+     */
+    public int busiestHour() {
+        int busiest = 0;
+        int maxCount = 0;
+        
+        for (int i = 0; i < hourCounts.length; i++) {
+            
+            if (hourCounts[i] > maxCount) {
+                maxCount = hourCounts[i];
+                busiest = i;
+            }
+        }
+        
+        return busiest;
+    }
 }
